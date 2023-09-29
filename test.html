@@ -6,6 +6,22 @@
     <title>Cat clicker</title>
 </head>
 <body>
-    
+    <h1>Cat clicker</h1>
+    <section>
+        <p>You have clicked <strong id="count"></strong> times !</p>
+        <a href="#" id="cat-link">
+            <img src="cat-clicked.jpg" alt="Click me !">
+        </a>
+    </section>
+
+    <script>
+        var count = 0;
+
+        document.getElementById('cat-link').addEventListener('click', function(){
+            count ++;
+            document.getElementById('count').textContent = `${count}`;
+        });
+
+    </script>
 </body>
 </html>
