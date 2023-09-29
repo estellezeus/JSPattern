@@ -24,18 +24,44 @@
     <h1>Cat clicker</h1>
     <section>
 
-        <p>You have clicked <strong id="count"></strong> times !</p>
         <div>
             <div class="half">
-                <p>Cat 1</p>
-                <a href="#" id="cat-link" onclick="countClicks()">
-                    <img src="cat-clicked.jpg" alt="Click me !">
-                </a>
+                <p>Cat List : Choose a cat on this list to display it name</p>
+                <ul>
+                    <li>
+                        <a href="#" onclick="showCat(1)">
+                            Cat 1
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showCat(2)">
+                            Cat 2
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showCat(3)">
+                            Cat 3
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showCat(4)">
+                            Cat 4
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showCat(5)">
+                            Cat 5
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div class="half">
-                <p>Cat 2</p>
+                <p class="cat-name"></p>
+                <p>You have clicked <strong id="count"></strong> 
+                    times for <strong class="cat-name"></strong>!
+                </p>
                 <a href="#" onclick="countClicks()">
-                    <img src="cat-clicked.jpg" alt="Click me too!">
+                    <img id="cat-img" alt="Click me too!">
                 </a>
             </div>
         </div>
@@ -44,11 +70,50 @@
     </section>
 
     <script>
-        var count = 0;
+        var count = 0,
+            count1 = 0,
+            count2 = 0,
+            count3 = 0,
+            count4 = 0,
+            count5 = 0,
+            chosenCat = 0;
 
         function countClicks(){
-            count ++;
-            document.getElementById('count').textContent = `${count}`;
+            var catName = document.getElementsByClassName('cat-name')[0].textContent;
+            
+            switch(catName){
+                case "cat1":
+                    count1 ++;
+                    break;
+                case "cat2":
+                    count2 ++;
+                    break;
+                case "cat3":
+                    count3 ++;
+                    break;
+                case "cat4":
+                    count4 ++;
+                    break; 
+                case "cat5":
+                    count5 ++;
+                    break;  
+            }
+
+            document.getElementById('count').textContent = eval("count"+chosenCat);
+            
+        }
+
+        function showCat(n){
+
+            document.getElementById('count').textContent = eval("count"+n);
+            document.getElementById('cat-img').setAttribute("src", "/images/cat"+n+".jpg");
+            var names = document.getElementsByClassName('cat-name');
+            Array.from(names).forEach((el) => {
+                el.textContent = "cat"+n;
+            });
+            
+            chosenCat = n;
+            
         }
 
     </script>
